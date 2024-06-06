@@ -3,12 +3,12 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
 
-def openai_chat():
+def openai_chat(model: str):
     """
     Get the answer from LLM model using chatgpt.
     """
 
-    model = ChatOpenAI(model="gpt-3.5-turbo")
+    model = ChatOpenAI(model=model)
 
     system_template = "Translate the following into {language}:"
 

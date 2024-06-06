@@ -1,6 +1,8 @@
+openai:
+  model: "gpt-3.5-turbo"
+
 afs:
   url: "https://api-ams.twcc.ai/api"
-  #  Available models: https://docs.twcc.ai/docs/user-guides/twcc/afs/available-model/
   model: "ffm-mixtral-8x7b-32k-instruct"
   question: "question: What is your name?"
   params:

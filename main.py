@@ -29,7 +29,8 @@ async def say_hello(name: str):
 
 @app.get("/test")
 async def test():
-    response = openai_chat()
+    model = cfg["openai"]["model"]
+    response = openai_chat(model)
 
     return response
 
