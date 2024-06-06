@@ -1,5 +1,5 @@
+from langchain_core.messages import HumanMessage, AIMessage
 from langchain_core.output_parsers import StrOutputParser
-from langchain_core.prompts import ChatPromptTemplate
 
 from models.afs import ChatFormosaFoundationModel
 
@@ -20,13 +20,19 @@ def afs_chat(url: str, model: str, key: str):
         model=model
     )
 
-    system_template = "Translate the following into {language}:"
+    # system_template = "Translate the following into {language}:"
+    #
+    # prompt_template = ChatPromptTemplate.from_messages(
+    #     [("system", system_template), ("user", "{text}")]
+    # )
 
-    prompt_template = ChatPromptTemplate.from_messages(
-        [("system", system_template), ("user", "{text}")]
-    )
+    messages = [
+        HumanMessage(content="人口最多的國家是?"),
+        AIMessage(content="人口最多的國家是印度。"),
+        HumanMessage(content="主要宗教為?")
+    ]
 
     parser = StrOutputParser()
-    chain = prompt_template | model | parser
+    chain = model | parser
 
-    return chain.invoke({"language": "italian", "text": "hi"})
+    return chain.invoke(messages)
