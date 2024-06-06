@@ -33,3 +33,13 @@ async def test():
 
     return response
 
+
+@app.get("/afs")
+async def afs():
+    url = cfg["afs"]["url"]
+    model = cfg["afs"]["model"]
+    key = os.getenv("AFS_API_KEY")
+
+    response = afs_chat(url, model, key)
+
+    return response
