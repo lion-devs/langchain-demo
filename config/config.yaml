@@ -1,0 +1,14 @@
+afs:
+  url: "https://api-ams.twcc.ai/api"
+  #  Available models: https://docs.twcc.ai/docs/user-guides/twcc/afs/available-model/
+  model: "ffm-mixtral-8x7b-32k-instruct"
+  question: "question: What is your name?"
+  params:
+    max_new_tokens: 100
+    temperature: 0.5
+    top_p: 1.0
+    top_k: 50
+    frequency_penalty: 1
+    stop_sequences: [ "stop" ]
+    show_probabilities: false
+    seed: 0

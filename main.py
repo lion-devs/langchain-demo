@@ -2,12 +2,16 @@ import os
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
-from langchain_core.messages import SystemMessage, HumanMessage
-from langchain_core.output_parsers import StrOutputParser
-from langchain_openai import ChatOpenAI
 
+from config.config import config_loader
+from handlers.afs import afs_chat
+from handlers.openai import openai_chat
+
+# Load configuration
+cfg = config_loader()
+
+# Load environment variables
 load_dotenv()
-
 LC_API_KEY = os.getenv("LANGCHAIN_API_KEY")
 
 app = FastAPI()
@@ -25,18 +29,7 @@ async def say_hello(name: str):
 
 @app.get("/test")
 async def test():
-    model = ChatOpenAI(model="gpt-3.5-turbo")
-    messages = [
-        SystemMessage(content="Translate the following from English into Italian"),
-        HumanMessage(content="hi!"),
-    ]
+    response = openai_chat()
 
-    # result = model.invoke(messages)
-    #
-    # # parse the output
-    parser = StrOutputParser()
-    # parser.invoke(result)
+    return response
 
-    chain = model | parser
-
-    return chain.invoke(messages)
