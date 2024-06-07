@@ -13,11 +13,14 @@ Stay tuned for updates!
 
 ### Initial project
 1. Clone this repository
-2. Create virtual environment. `python -m venv .venv && source .venv/bin/activate`
-3. Install dependencies from `requirements.txt`
+2. Install and setup python
+    ```shell
+    pyenv install 3.12.2 && pyenv global 3.12.2 && pyenv local 3.12.2
+    ```
+3. Install dependencies using `poetry`
 
     ```shell
-    pip install -r requirements.txt
+    poetry env use 3.12.2 && poetry install --no-root
     ```
 4. Signup for [LangSmith](https://smith.langchain.com)
 5. Remember the API key from the LangSmith-Personal-API Keys
@@ -34,9 +37,9 @@ Checkout Available models:
 
 ### Start the project
 
-Run the following command to start the FastAPI server
+Run the following command to start the FastAPI server using Uvicorn:
 ```shell
-fastapi dev main.py
+poetry run uvicorn main:app --reload
 ```
 
 ## Common Error Resolutions
