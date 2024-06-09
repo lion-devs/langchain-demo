@@ -17,11 +17,9 @@ Stay tuned for updates!
 - Poetry
 - Pyenv
 
-Install `Python` 3.12.2 using pyenv
+> more details on how to install and setup pyenv and poetry can be found in the appendix
 
-```shell
-pyenv install 3.12.2
-```
+[//]: # (or enable `virtualenvs.prefer-active-python` to `true`)
 
 ### Initial project
 
@@ -30,7 +28,7 @@ pyenv install 3.12.2
 2. Install dependencies using `poetry`
 
     ```shell
-    poetry env use 3.12.2 && poetry install --no-root
+    poetry install --no-root
     ```
 3. Signup for [LangSmith](https://smith.langchain.com)
 4. Remember the API key from the LangSmith-Personal-API Keys
@@ -64,3 +62,43 @@ You can resolve it by installing a specific version of the Pydantic library. Run
 ```shell
 pip install pydantic==1.10.2
 ```
+
+## Appendix
+
+### Install and setup pyenv and poetry
+
+#### Arch Linux
+
+1. Install pyenv
+
+   ```shell
+   yay -S pyenv
+   ```
+   Add the following lines to your shell configuration file
+
+   ```shell
+   echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+   echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+   echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+   ```
+
+2. Install python using pyenv
+
+   ```shell
+   pyenv install 3.12.2
+   ```
+
+3. Install poetry
+
+   Switch current shell and check which python executable is using
+
+      ```shell
+      pyenv shell 3.12.2
+      which python
+      ```
+
+   Should return something like `/home/user/.pyenv/shims/python`. then run the following command
+
+      ```shell
+      curl -sSL https://install.python-poetry.org | python -
+      ```
