@@ -51,6 +51,12 @@ Run the following command to start the FastAPI server using Uvicorn:
 poetry run uvicorn main:app --reload
 ```
 
+or 
+
+```shell
+poetry run fastapi dev main.py
+```
+
 ## Common Error Resolutions
 
 If you encounter the following error:
